@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "manifest.json", "use": "@vercel/static" },
+    { "src": "sw.js", "use": "@vercel/static" },
+    { "src": "api/emanus.js", "use": "@vercel/node" },
+    { "src": "api/import-alibaba.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/emanus", "dest": "/api/emanus.js" },
+    { "src": "/api/import-alibaba", "dest": "/api/import-alibaba.js" },
+    { "src": "/manifest.json", "dest": "/manifest.json" },
+    { "src": "/sw.js", "dest": "/sw.js" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [{ "key": "Service-Worker-Allowed", "value": "/" }]
+    }
+  ]
+}
